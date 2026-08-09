@@ -1,13 +1,22 @@
 import itertools
+import importlib.util
+from pathlib import Path
 import sys
 import threading
 import unittest
 
 sys.path.insert(0, ".")
 
-from DistanceSensor import DistanceSensor, DistanceSensorDriver
-from distance_drivers.hcsr04 import HCSR04Driver
-from distance_drivers.vl53l4cd_core import DEFAULT_CONFIGURATION, VL53L4CD
+spec = importlib.util.spec_from_file_location(
+    "DistanceSensor", Path("__init__.py"), submodule_search_locations=["."])
+distance_sensor = importlib.util.module_from_spec(spec)
+sys.modules["DistanceSensor"] = distance_sensor
+spec.loader.exec_module(distance_sensor)
+
+DistanceSensor = distance_sensor.DistanceSensor
+DistanceSensorDriver = distance_sensor.DistanceSensorDriver
+from DistanceSensor.distance_drivers.hcsr04 import HCSR04Driver
+from DistanceSensor.distance_drivers.vl53l4cd_core import DEFAULT_CONFIGURATION, VL53L4CD
 
 
 class FakeDriver(DistanceSensorDriver):

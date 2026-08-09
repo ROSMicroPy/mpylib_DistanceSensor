@@ -1,10 +1,10 @@
 {
   "urls": [
-    ["DistanceSensor.py", "github:ROSMicroPy/mpylib_DistanceSensor/DistanceSensor.py"],
-    ["distance_drivers/__init__.py", "github:ROSMicroPy/mpylib_DistanceSensor/distance_drivers/__init__.py"],
-    ["distance_drivers/hcsr04.py", "github:ROSMicroPy/mpylib_DistanceSensor/distance_drivers/hcsr04.py"],
-    ["distance_drivers/vl53l4cd.py", "github:ROSMicroPy/mpylib_DistanceSensor/distance_drivers/vl53l4cd.py"],
-    ["distance_drivers/vl53l4cd_core.py", "github:ROSMicroPy/mpylib_DistanceSensor/distance_drivers/vl53l4cd_core.py"]
+    ["DistanceSensor/__init__.py", "./__init__.py"],
+    ["DistanceSensor/distance_drivers/__init__.py", "./distance_drivers/__init__.py"],
+    ["DistanceSensor/distance_drivers/hcsr04.py", "./distance_drivers/hcsr04.py"],
+    ["DistanceSensor/distance_drivers/vl53l4cd.py", "./distance_drivers/vl53l4cd.py"],
+    ["DistanceSensor/distance_drivers/vl53l4cd_core.py", "./distance_drivers/vl53l4cd_core.py"]
   ],
   "deps": [],
   "version": "0.2.0"

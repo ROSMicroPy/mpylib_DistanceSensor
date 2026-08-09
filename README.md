@@ -27,5 +27,9 @@ The VL53L4CD protocol is based on STMicroelectronics' Ultra Lite Driver and the
 earlier Adafruit-derived port retained under `stuff/other-repos`. It performs
 direct `writeto`/`readfrom` calls and has no CircuitPython `I2CDevice` dependency.
 
+The complete public API is defined once in `__init__.py`. The mip manifest
+installs the component under `lib/DistanceSensor/`, including its namespaced
+drivers, so consumers use only `from DistanceSensor import ...`.
+
 `component.yaml` defines the framework interface and driver configuration.
 `package.json` is directly installable by MicroPython `mip`.

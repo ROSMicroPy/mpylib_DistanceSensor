@@ -11,7 +11,7 @@ components:
       shutdown: shutdown
     drivers:
       hcsr04:
-        entry_point: distance_drivers.hcsr04:HCSR04Driver
+        entry_point: DistanceSensor.distance_drivers.hcsr04:HCSR04Driver
         sensor_type: ultrasonic
         config:
           trigger_pin: {type: pin_ref, required: true}
@@ -21,7 +21,7 @@ components:
         operations: [read_distance_mm, set_active, shutdown]
         safe_state: shutdown
       vl53l4cd:
-        entry_point: distance_drivers.vl53l4cd:VL53L4CDDriver
+        entry_point: DistanceSensor.distance_drivers.vl53l4cd:VL53L4CDDriver
         sensor_type: time_of_flight
         config:
           i2c: {type: i2c_ref, required: true}

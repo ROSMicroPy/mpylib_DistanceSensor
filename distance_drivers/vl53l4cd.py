@@ -3,7 +3,7 @@
 import time
 
 from DistanceSensor import DistanceSensorDriver
-from distance_drivers.vl53l4cd_core import VL53L4CD
+from DistanceSensor.distance_drivers.vl53l4cd_core import VL53L4CD
 
 
 class VL53L4CDDriver(DistanceSensorDriver):
