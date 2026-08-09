@@ -1,0 +1,38 @@
+contract_version: "0.2"
+package:
+  name: distance-sensor
+  version: 0.2.0
+  import: DistanceSensor
+components:
+  DistanceSensorController:
+    entry_point: DistanceSensor:DistanceSensorController
+    operations: [create_sensor, get_sensor, remove_sensor, shutdown]
+    lifecycle:
+      shutdown: shutdown
+    drivers:
+      hcsr04:
+        entry_point: distance_drivers.hcsr04:HCSR04Driver
+        sensor_type: ultrasonic
+        config:
+          trigger_pin: {type: pin_ref, required: true}
+          echo_pin: {type: pin_ref, required: true}
+          timeout_us: {type: integer, minimum: 1, default: 30000, unit: us}
+          temperature_c: {type: number, default: 20, unit: C}
+        operations: [read_distance_mm, set_active, shutdown]
+        safe_state: shutdown
+      vl53l4cd:
+        entry_point: distance_drivers.vl53l4cd:VL53L4CDDriver
+        sensor_type: time_of_flight
+        config:
+          i2c: {type: i2c_ref, required: true}
+          address: {type: integer, minimum: 8, maximum: 119, default: 41}
+          timing_budget: {type: integer, minimum: 10, maximum: 200, default: 50, unit: ms}
+          inter_measurement: {type: integer, minimum: 0, default: 0, unit: ms}
+          read_timeout_ms: {type: integer, minimum: 1, default: 1000, unit: ms}
+        operations: [read_distance_mm, set_active, shutdown]
+        safe_state: shutdown
+events:
+  distance_alert:
+    payload:
+      sensor: {type: string}
+      distance_mm: {type: integer, unit: mm}
